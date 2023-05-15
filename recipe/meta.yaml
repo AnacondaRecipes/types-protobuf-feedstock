@@ -30,9 +30,16 @@ test:
 
 about:
   home: https://github.com/python/typeshed
+  dev_url: https://github.com/python/typeshed
+  doc_url: https://typing.readthedocs.io/
   summary: Typing stubs for protobuf
+  description: |
+    This is a PEP 561 type stub package for the protobuf package. 
+    It can be used by type-checking tools like mypy, pyright, 
+    pytype, PyCharm, etc. to check code that uses protobuf.
   license: Apache-2.0 AND MIT
   license_file: LICENSE
+  licence_family: Apache
 
 extra:
   recipe-maintainers:
