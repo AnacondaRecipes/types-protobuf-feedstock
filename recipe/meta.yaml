@@ -19,6 +19,8 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
+    - wheel
   run:
     - python
     - types-futures
@@ -43,7 +45,7 @@ about:
     pytype, PyCharm, etc. to check code that uses protobuf.
   license: Apache-2.0 AND MIT
   license_file: LICENSE
-  licence_family: Apache
+  license_family: Apache
 
 extra:
   recipe-maintainers:
