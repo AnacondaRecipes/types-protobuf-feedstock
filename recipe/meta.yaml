@@ -26,8 +26,11 @@ requirements:
     - types-futures
 
 test:
+  files:
+    - _run_test.py
   requires:
     - pip
+    - protobuf
   commands:
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi  # [not win]
     - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1 # [win]
