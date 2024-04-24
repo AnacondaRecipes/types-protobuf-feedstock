@@ -1,5 +1,5 @@
 {% set name = "types-protobuf" %}
-{% set version = "3.20.4.6" %}
+{% set version = "4.23.0.1" %}
 
 
 package:
@@ -8,34 +8,48 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-protobuf-{{ version }}.tar.gz
-  sha256: ba27443c592bbec1629dd69494a24c84461c63f0d3b7d648ce258aaae9680965
+  sha256: 7bd5ea122a057b11a82b785d9de464932a1e9175fe977a4128adef11d7f35547
 
 build:
   number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  #[py<36]
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
     - wheel
   run:
-    - python >=3.6
+    - python
     - types-futures
 
 test:
+  files:
+    - _run_test.py
+  requires:
+    - pip
+    - protobuf
   commands:
+    - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi  # [not win]
+    - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1 # [win]
     - pip check
-    - test -f $SP_DIR/google-stubs/__init__.pyi
-    - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi
 
 
 about:
   home: https://github.com/python/typeshed
+  dev_url: https://github.com/python/typeshed
+  doc_url: https://typing.readthedocs.io/
   summary: Typing stubs for protobuf
+  description: |
+    This is a PEP 561 type stub package for the protobuf package. 
+    It can be used by type-checking tools like mypy, pyright, 
+    pytype, PyCharm, etc. to check code that uses protobuf.
   license: Apache-2.0 AND MIT
   license_file: LICENSE
+  license_family: Apache
 
 extra:
   anaconda-services:
@@ -43,6 +57,5 @@ extra:
     reason: Client request
   recipe-maintainers:
     - ianaobi
-    - bkreider
     - fhoehle
     - conda-forge/mypy
