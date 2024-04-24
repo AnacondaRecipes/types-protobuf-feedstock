@@ -19,12 +19,14 @@ requirements:
   host:
     - pip
     - python >=3.6
+    - wheel
   run:
     - python >=3.6
     - types-futures
 
 test:
   commands:
+    - pip check
     - test -f $SP_DIR/google-stubs/__init__.pyi
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi
 
