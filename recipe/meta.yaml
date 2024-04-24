@@ -12,6 +12,7 @@ source:
 
 build:
   number: 0
+  noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  #[py<36]
 
@@ -51,6 +52,10 @@ about:
   license_family: Apache
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/48416
+    reason: Client request
   recipe-maintainers:
+    - ianaobi
     - fhoehle
     - conda-forge/mypy
