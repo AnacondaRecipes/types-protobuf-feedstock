@@ -1,7 +1,6 @@
 #from __future__ import annotations
 #from google.protobuf.struct_pb2 import ListValue, Struct
-import types-protobuf
-
+import google.protobuf
 print("Tests complete")
 
 #Below was at the top
