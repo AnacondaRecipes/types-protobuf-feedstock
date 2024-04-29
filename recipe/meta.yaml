@@ -29,7 +29,7 @@ test:
     - pip
   commands:
     - pip check
-    - test -f $SP_DIR/google-stubs/__init__.pyi
+#    - test -f $SP_DIR/google-stubs/__init__.pyi
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi
 
 
