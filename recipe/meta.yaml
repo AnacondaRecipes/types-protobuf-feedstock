@@ -25,6 +25,8 @@ requirements:
     - types-futures
 
 test:
+  requires:
+    - pip
   commands:
     - pip check
     - test -f $SP_DIR/google-stubs/__init__.pyi
