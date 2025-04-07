@@ -1,19 +1,18 @@
 {% set name = "types-protobuf" %}
-{% set version = "4.25.0.20240417" %}
-
+{% set version = "5.29.1.20241207" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-protobuf-{{ version }}.tar.gz
-  sha256: c34eff17b9b3a0adb6830622f0f302484e4c089f533a46e3f147568313544352
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 2ebcadb8ab3ef2e3e2f067e0882906d64ba0dc65fc5b0fd7a8b692315b4a0be9
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  #[py<38]
+  skip: True  # [py<38]
 
 requirements:
   host:
@@ -23,32 +22,31 @@ requirements:
     - wheel
   run:
     - python
-    - types-futures
 
 test:
   files:
     - _run_test.py
-  requires:
-    - pip
-    - protobuf
   commands:
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi  # [not win]
     - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1 # [win]
     - pip check
-
+  requires:
+    - pip
+    - protobuf
+    - types-futures
 
 about:
   home: https://github.com/python/typeshed
-  dev_url: https://github.com/python/typeshed
-  doc_url: https://typing.readthedocs.io/
   summary: Typing stubs for protobuf
-  description: |
-    This is a PEP 561 type stub package for the protobuf package. 
-    It can be used by type-checking tools like mypy, pyright, 
-    pytype, PyCharm, etc. to check code that uses protobuf.
-  license: Apache-2.0 AND MIT
-  license_file: LICENSE
+  license: Apache-2.0
   license_family: Apache
+  license_file: LICENSE
+  doc_url: https://typing.readthedocs.io/
+  dev_url: https://github.com/python/typeshed
+  description: |
+    This is a PEP 561 type stub package for the protobuf package.
+    It can be used by type-checking tools like mypy, pyright, pytype, Pyre, PyCharm, etc. to check code that uses protobuf.
+    This version of types-protobuf aims to provide accurate annotations for protobuf~=5.29.1.
 
 extra:
   recipe-maintainers:
