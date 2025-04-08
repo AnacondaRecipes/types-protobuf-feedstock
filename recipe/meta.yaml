@@ -38,7 +38,7 @@ test:
 about:
   home: https://github.com/python/typeshed
   summary: Typing stubs for protobuf
-  license: Apache-2.0
+  license: Apache-2.0 AND MIT
   license_family: Apache
   license_file: LICENSE
   doc_url: https://typing.readthedocs.io/
