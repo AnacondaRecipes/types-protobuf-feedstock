@@ -1,13 +1,13 @@
 {% set name = "types-protobuf" %}
-{% set version = "5.29.1.20241207" %}
+{% set version = "6.32.1.20251210" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 2ebcadb8ab3ef2e3e2f067e0882906d64ba0dc65fc5b0fd7a8b692315b4a0be9
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: c698bb3f020274b1a2798ae09dc773728ce3f75209a35187bd11916ebfde6763
 
 build:
   number: 0
@@ -41,7 +41,7 @@ about:
   license: Apache-2.0 AND MIT
   license_family: Apache
   license_file: LICENSE
-  doc_url: https://typing.readthedocs.io/
+  doc_url: https://typing.readthedocs.io
   dev_url: https://github.com/python/typeshed
   description: |
     This is a PEP 561 type stub package for the protobuf package.
