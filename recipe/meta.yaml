@@ -1,5 +1,5 @@
 {% set name = "types-protobuf" %}
-{% set version = "6.32.1.20251210" %}
+{% set version = "7.35.1.20260824" %}
 
 package:
   name: {{ name|lower }}
@@ -7,19 +7,18 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: c698bb3f020274b1a2798ae09dc773728ce3f75209a35187bd11916ebfde6763
+  sha256: 9c40a3d4856b7d8e47a085dcf3ee82d06ce470fbad79488dfa49027ee15c619f
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  skip: true  # [py<310]
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=82.0.1
   run:
     - python
 
@@ -28,7 +27,7 @@ test:
     - _run_test.py
   commands:
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi  # [not win]
-    - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1 # [win]
+    - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1  # [win]
     - pip check
   requires:
     - pip
@@ -47,6 +46,16 @@ about:
     This is a PEP 561 type stub package for the protobuf package.
     It can be used by type-checking tools like mypy, pyright, pytype, Pyre, PyCharm, etc. to check code that uses protobuf.
     This version of types-protobuf aims to provide accurate annotations for protobuf~=5.29.1.
+
+
+
+
+
+
+
+
+
+
 
 extra:
   recipe-maintainers:
