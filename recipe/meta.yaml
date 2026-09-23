@@ -1,25 +1,24 @@
 {% set name = "types-protobuf" %}
-{% set version = "6.32.1.20251210" %}
+{% set version = "7.35.1.20260906" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: c698bb3f020274b1a2798ae09dc773728ce3f75209a35187bd11916ebfde6763
+  sha256: efd1a3862d4c967dad5512ef8d56b1530ac84f182c41735b94004756518c4998
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  skip: true  # [py<310]
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=82.0.1
   run:
     - python
 
@@ -28,7 +27,7 @@ test:
     - _run_test.py
   commands:
     - test -f $SP_DIR/google-stubs/protobuf/__init__.pyi  # [not win]
-    - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1 # [win]
+    - if not exist %SP_DIR%\\google-stubs\\protobuf\\__init__.pyi exit 1  # [win]
     - pip check
   requires:
     - pip
